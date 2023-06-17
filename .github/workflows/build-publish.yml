@@ -6,7 +6,7 @@ jobs:
         permissions:
             contents: 'read'
             id-token: 'write'
-        uses: killerdaemon01/gh-templates/.github/workflows/docker_build_push_with_docker.yml@main
+        uses: killerdaemon01/gh-templates/.github/workflows/docker-build.yml@main
         with: 
             keyvault: mykeyvault29017
             acr_username_secret: acr-username
@@ -20,7 +20,7 @@ jobs:
         permissions:
             contents: 'read'
             id-token: 'write'
-        uses: killerdaemon01/gh-templates/.github/workflows/docker_build_push_with_docker.yml@main
+        uses: killerdaemon01/gh-templates/.github/workflows/docker-build.yml@main
         with: 
             keyvault: mykeyvault29018
             acr_username_secret: acr-username
