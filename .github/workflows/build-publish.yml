@@ -1,0 +1,28 @@
+name: Docker build and publish
+on:
+    workflow_dispatch
+jobs:
+    Dev:
+        permissions:
+            contents: 'read'
+            id-token: 'write'
+        uses: killerdaemon01/gh-templates/.github/workflows/docker_build_push_with_docker.yml@main
+        with: 
+            keyvault: mykeyvault29017
+            acr_username_secret: acr-username
+            acr_password_secret: acr-password
+            acr_name: myregistry29017
+        secrets: inherit
+
+    Test:
+        needs: Dev
+        permissions:
+            contents: 'read'
+            id-token: 'write'
+        uses: killerdaemon01/gh-templates/.github/workflows/docker_build_push_with_docker.yml@main
+        with: 
+            keyvault: mykeyvault29018
+            acr_username_secret: acr-username
+            acr_password_secret: acr-password
+            acr_name: myregistry29018
+        secrets: inherit
