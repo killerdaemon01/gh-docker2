@@ -25,5 +25,6 @@ jobs:
             keyvault: mykeyvault29018
             acr_username_secret: acr-username
             acr_password_secret: acr-password
-            acr_name: node-image
+            acr_name: myregistry29018
+            image_name: node-image
         secrets: inherit
