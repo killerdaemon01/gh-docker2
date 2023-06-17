@@ -17,9 +17,9 @@ app.get("/hobbies", function(req,res){
     res.send("<ul><li>Something one</li><li>Something two</li><li>Something three</li><li>Something four</li></ul>")
 });
 
-app.get("/testing", function(req,res){
-    res.sendFile(__dirname+"/file.html");
-})
+app.get("/test",function(req,res){
+    response.sendFile(__dirname+"/test.html");
+});
 
 app.listen(80, function()
 {

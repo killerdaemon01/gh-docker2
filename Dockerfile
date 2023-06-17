@@ -2,16 +2,8 @@ FROM node:18
 
 WORKDIR /app
 
-COPY app.js .
-
-COPY package.json .
-
-COPY hello.html .
-
-COPY file.html .
-
-RUN chmod 777 file.html
+COPY . .
 
 RUN npm install -y
 
-CMD [ "echo","working",">","/app/file.html","&&","node","./app.js"]
+CMD ["node","./app.js"]
