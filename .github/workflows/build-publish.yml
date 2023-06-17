@@ -12,6 +12,7 @@ jobs:
             acr_username_secret: acr-username
             acr_password_secret: acr-password
             acr_name: myregistry29017
+            image_name: node-image
         secrets: inherit
 
     Test:
@@ -24,5 +25,5 @@ jobs:
             keyvault: mykeyvault29018
             acr_username_secret: acr-username
             acr_password_secret: acr-password
-            acr_name: myregistry29018
+            acr_name: node-image
         secrets: inherit
