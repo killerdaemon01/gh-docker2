@@ -39,6 +39,7 @@ jobs:
     
   
     CD:
+        needs: CI
         permissions:
             contents: 'read'
             id-token: 'write'
