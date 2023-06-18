@@ -1,6 +1,6 @@
 name: Docker build and publish
 on:
-    workflow_dispatch
+    workflow_dispatch:
 jobs:
     CI:
         strategy:
@@ -33,5 +33,19 @@ jobs:
             acr_name: ${{matrix.acr_name}}
             image_name: ${{matrix.image_name}}
             environment: ${{matrix.environment}}
+            tag: ${{github.sha}}
+        secrets: inherit
+
+    
+  
+    CD:
+        permissions:
+            contents: 'read'
+            id-token: 'write'
+        uses: killerdaemon01/gh-templates/.github/workflows/docker-deploy.yml@main
+        with:
+            acr_name: myregistry29017
+            image_name: node-image-dev
+            web_app_name: mywebapp29017
             tag: ${{github.sha}}
         secrets: inherit
