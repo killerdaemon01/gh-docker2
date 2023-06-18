@@ -8,13 +8,13 @@ jobs:
                 environment: [dev, test]
                 include:
                     - environment: dev
-                      keyvault: mykeyvault29017
+                      keyvault: mykeyvault290171
                       acr_username_secret: acr-username
                       acr_password_secret: acr-password
                       acr_name: myregistry29017
                       image_name: node-image
                     - environment: test
-                      keyvault: mykeyvault29018
+                      keyvault: mykeyvault290181
                       acr_username_secret: acr-username
                       acr_password_secret: acr-password
                       acr_name: myregistry29018
