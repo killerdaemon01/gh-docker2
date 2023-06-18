@@ -49,7 +49,7 @@ jobs:
             image_name: node-image-dev
             web_app_name: mywebapp29017
             tag: ${{github.sha}}
-            environment: test
+            environment: dev
         secrets: inherit
     
     Test:
