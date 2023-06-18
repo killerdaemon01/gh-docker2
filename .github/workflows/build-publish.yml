@@ -2,53 +2,35 @@ name: Docker build and publish
 on:
     workflow_dispatch
 jobs:
-    # CI:
-    #     strategy:
-    #         matrix: 
-    #             environment: [dev, test]
-    #             include:
-    #                 - environment: dev
-    #                   keyvault: mykeyvault290171
-    #                   acr_username_secret: acr-username
-    #                   acr_password_secret: acr-password
-    #                   acr_name: myregistry29017
-    #                   image_name: node-image-dev
-    #                 - environment: test
-    #                   keyvault: mykeyvault290181
-    #                   acr_username_secret: acr-username
-    #                   acr_password_secret: acr-password
-    #                   acr_name: myregistry29018
-    #                   image_name: node-image-test
-
-    #     permissions:
-    #         contents: 'read'
-    #         id-token: 'write'
-        
-
-    #     uses: killerdaemon01/gh-templates/.github/workflows/docker-build.yml@main
-    #     with: 
-    #         keyvault: ${{matrix.keyvault}}
-    #         acr_username_secret: ${{matrix.acr_username_secret}}
-    #         acr_password_secret: ${{matrix.acr_password_secret}}
-    #         acr_name: ${{matrix.acr_name}}
-    #         image_name: ${{matrix.image_name}}
-    #         environment: ${{matrix.environment}}
-    #     secrets: inherit
-
-    CD:
+    CI:
         strategy:
-            matrix:
-                environment: [dev,test,preprod,prod]
+            matrix: 
+                environment: [dev, test]
                 include:
                     - environment: dev
+                      keyvault: mykeyvault290171
+                      acr_username_secret: acr-username
+                      acr_password_secret: acr-password
+                      acr_name: myregistry29017
+                      image_name: node-image-dev
                     - environment: test
-                      needs: dev
-                    - environment: preprod
-                      needs: test
-                    - environment: prod
-                      needs: test
-        runs-on: ubuntu-latest
-        steps:
-            - name: Print environment
-              run: |
-                echo ${{matrix.environment}}
+                      keyvault: mykeyvault290181
+                      acr_username_secret: acr-username
+                      acr_password_secret: acr-password
+                      acr_name: myregistry29018
+                      image_name: node-image-test
+
+        permissions:
+            contents: 'read'
+            id-token: 'write'
+        
+
+        uses: killerdaemon01/gh-templates/.github/workflows/docker-build.yml@main
+        with: 
+            keyvault: ${{matrix.keyvault}}
+            acr_username_secret: ${{matrix.acr_username_secret}}
+            acr_password_secret: ${{matrix.acr_password_secret}}
+            acr_name: ${{matrix.acr_name}}
+            image_name: ${{matrix.image_name}}
+            environment: ${{matrix.environment}}
+        secrets: inherit
