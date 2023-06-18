@@ -34,31 +34,3 @@ jobs:
             image_name: ${{matrix.image_name}}
             environment: ${{matrix.environment}}
         secrets: inherit
-
-    # Test:
-    #     needs: Dev
-    #     permissions:
-    #         contents: 'read'
-    #         id-token: 'write'
-    #     uses: killerdaemon01/gh-templates/.github/workflows/docker-build.yml@main
-    #     with: 
-        #     keyvault: mykeyvault29018
-        #     acr_username_secret: acr-username
-        #     acr_password_secret: acr-password
-        #     acr_name: myregistry29018
-        #     image_name: node-image
-        # secrets: inherit
-
-
-    # example_matrix:
-    #     strategy:
-    #       matrix:
-    #         environment: [dev, test]
-    #         include:
-    #             - environment: dev
-                  
-    #     runs-on: ubuntu-latest
-    #     steps:
-    #       - uses: actions/setup-node@v3
-    #         with:
-    #           node-version: ${{ matrix.version }}
