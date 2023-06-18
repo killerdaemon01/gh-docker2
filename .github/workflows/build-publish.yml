@@ -9,14 +9,14 @@ jobs:
                 include:
                     - environment: dev
                       keyvault: mykeyvault290171
-                      acr_username_secret: acr-username
-                      acr_password_secret: acr-password
+                      acr_username_secret: acrusername
+                      acr_password_secret: acrpassword
                       acr_name: myregistry29017
                       image_name: node-image-dev
                     - environment: test
                       keyvault: mykeyvault290181
-                      acr_username_secret: acr-username
-                      acr_password_secret: acr-password
+                      acr_username_secret: acrusername
+                      acr_password_secret: acrpassword
                       acr_name: myregistry29018
                       image_name: node-image-test
 
@@ -33,4 +33,5 @@ jobs:
             acr_name: ${{matrix.acr_name}}
             image_name: ${{matrix.image_name}}
             environment: ${{matrix.environment}}
+            tag: ${{github.sha}}
         secrets: inherit
