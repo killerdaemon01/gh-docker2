@@ -12,13 +12,13 @@ jobs:
                       acr_username_secret: acr-username
                       acr_password_secret: acr-password
                       acr_name: myregistry29017
-                      image_name: node-image
+                      image_name: node-image-dev
                     - environment: test
                       keyvault: mykeyvault290181
                       acr_username_secret: acr-username
                       acr_password_secret: acr-password
                       acr_name: myregistry29018
-                      image_name: node-image
+                      image_name: node-image-test
 
         permissions:
             contents: 'read'
