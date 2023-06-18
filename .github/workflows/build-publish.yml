@@ -2,18 +2,38 @@ name: Docker build and publish
 on:
     workflow_dispatch
 jobs:
-    # Dev:
-    #     permissions:
-    #         contents: 'read'
-    #         id-token: 'write'
-    #     uses: killerdaemon01/gh-templates/.github/workflows/docker-build.yml@main
-    #     with: 
-    #         keyvault: mykeyvault29017
-    #         acr_username_secret: acr-username
-    #         acr_password_secret: acr-password
-    #         acr_name: myregistry29017
-    #         image_name: node-image
-    #     secrets: inherit
+    CI:
+        strategy:
+            matrix: 
+                environment: [dev, test]
+                include:
+                    - environment: dev
+                      keyvault: mykeyvault29017
+                      acr_username_secret: acr-username
+                      acr_password_secret: acr-password
+                      acr_name: myregistry29017
+                      image_name: node-image
+                    - environment: test
+                      keyvault: mykeyvault29018
+                      acr_username_secret: acr-username
+                      acr_password_secret: acr-password
+                      acr_name: myregistry29018
+                      image_name: node-image
+
+        permissions:
+            contents: 'read'
+            id-token: 'write'
+        
+
+        uses: killerdaemon01/gh-templates/.github/workflows/docker-build.yml@main
+        with: 
+            keyvault: ${{matrix.keyvault}}
+            acr_username_secret: ${{matrix.acr_username_secret}}
+            acr_password_secret: ${{matrix.acr_password_secret}}
+            acr_name: ${{matrix.acr_name}}
+            image_name: ${{matrix.image_name}}
+            environment: ${{matrix.environment}}
+        secrets: inherit
 
     # Test:
     #     needs: Dev
@@ -22,21 +42,23 @@ jobs:
     #         id-token: 'write'
     #     uses: killerdaemon01/gh-templates/.github/workflows/docker-build.yml@main
     #     with: 
-    #         keyvault: mykeyvault29018
-    #         acr_username_secret: acr-username
-    #         acr_password_secret: acr-password
-    #         acr_name: myregistry29018
-    #         image_name: node-image
-    #     secrets: inherit
+        #     keyvault: mykeyvault29018
+        #     acr_username_secret: acr-username
+        #     acr_password_secret: acr-password
+        #     acr_name: myregistry29018
+        #     image_name: node-image
+        # secrets: inherit
 
 
-    example_matrix:
-        strategy:
-          matrix:
-            os: [ubuntu-22.04, ubuntu-20.04]
-            version: [10, 12, 14]
-        runs-on: ${{ matrix.os }}
-        steps:
-          - uses: actions/setup-node@v3
-            with:
-              node-version: ${{ matrix.version }}
+    # example_matrix:
+    #     strategy:
+    #       matrix:
+    #         environment: [dev, test]
+    #         include:
+    #             - environment: dev
+                  
+    #     runs-on: ubuntu-latest
+    #     steps:
+    #       - uses: actions/setup-node@v3
+    #         with:
+    #           node-version: ${{ matrix.version }}
