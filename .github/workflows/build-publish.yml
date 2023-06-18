@@ -38,7 +38,7 @@ jobs:
 
     
   
-    CD:
+    Dev:
         needs: CI
         permissions:
             contents: 'read'
@@ -49,4 +49,19 @@ jobs:
             image_name: node-image-dev
             web_app_name: mywebapp29017
             tag: ${{github.sha}}
+            environment: test
+        secrets: inherit
+    
+    Test:
+        needs: Dev
+        permissions:
+            contents: 'read'
+            id-token: 'write'
+        uses: killerdaemon01/gh-templates/.github/workflows/docker-deploy.yml@main
+        with:
+            acr_name: myregistry29018
+            image_name: node-image-test
+            web_app_name: mywebapp29018
+            tag: ${{github.sha}}
+            environment: test
         secrets: inherit
