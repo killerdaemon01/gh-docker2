@@ -39,7 +39,7 @@ jobs:
         strategy:
             matrix:
                 environment: [dev,test,preprod,prod]
-                includes:
+                include:
                     - environment: dev
                     - environment: test
                       needs: dev
