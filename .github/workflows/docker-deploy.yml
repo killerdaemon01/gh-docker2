@@ -11,4 +11,5 @@ jobs:
             acr_name: myregistry29017
             image_name: node-image-dev
             web_app_name: mywebapp29017
+            slot_name: staging
         secrets: inherit
