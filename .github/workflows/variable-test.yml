@@ -1,0 +1,6 @@
+name: Environment variables
+on: 
+    workflow_dispatch
+jobs:
+    Test:
+        uses: ./.github/workflows/variable-test-template.yml
