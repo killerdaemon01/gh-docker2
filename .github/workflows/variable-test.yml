@@ -1,6 +1,26 @@
 name: Environment variables
 on: 
-    workflow_dispatch
+    workflow_dispatch:
+        inputs:
+            environment:
+                description: Env
+                type: choice
+                required: true
+                options:
+                    - dev
+                    - test
 jobs:
-    Test:
+    Dev:
+        if: (inputs.environment == 'dev')
         uses: ./.github/workflows/variable-test-template.yml
+        with:
+            cmd: node ./test2.js
+            variable: dev-environment
+            environment: dev
+    Test:
+        if: (inputs.environment == 'test')
+        uses: ./.github/workflows/variable-test-template.yml
+        with:
+            cmd: node ./test2.js
+            variable: test-environment
+            environment: test

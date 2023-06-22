@@ -1,8 +1,24 @@
 name: Template variable test
 on:
-    workflow_call
+    workflow_call:
+        inputs:
+            environment:
+                description: Env name
+                type: string
+                required: true
+            cmd:
+                description: command
+                type: string
+                required: true
+            variable:
+                description: Variable
+                type: string
+                required: true
+
+
 jobs:
     Print:
+        environment: ${{inputs.environment}}
         runs-on: ubuntu-latest
         steps:
             - name: Get code
@@ -14,6 +30,7 @@ jobs:
             - name: Run script
               run: |
                 npm install
-                node ./test2.js
+                ${{inputs.cmd}}
+                # node ./test2.js
               env:
-                USERNAME: MyUsername
+                USERNAME: ${{inputs.variable}}
