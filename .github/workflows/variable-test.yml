@@ -9,6 +9,9 @@ on:
                 options:
                     - dev
                     - test
+env:
+  version: 0.1
+  
 jobs:
     Dev:
         if: (inputs.environment == 'dev')
@@ -17,6 +20,7 @@ jobs:
             cmd: node ./test2.js
             variable: dev-environment
             environment: dev
+            tag: ${{version}}.${{github.run_id}}
     Test:
         if: (inputs.environment == 'test')
         uses: ./.github/workflows/variable-test-template.yml
@@ -24,3 +28,4 @@ jobs:
             cmd: node ./test2.js
             variable: test-environment
             environment: test
+            tag: ${{version}}.${{github.run_id}}
