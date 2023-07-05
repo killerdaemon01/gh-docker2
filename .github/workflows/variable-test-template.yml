@@ -14,6 +14,10 @@ on:
                 description: Variable
                 type: string
                 required: true
+            tag:
+                description: Tag
+                type: string
+                required: true
 
 
 jobs:
@@ -34,3 +38,6 @@ jobs:
                 # node ./test2.js
               env:
                 USERNAME: ${{inputs.variable}}
+            - name: Echo tag
+              run: |
+                echo ${{inputs.tag}}
