@@ -33,7 +33,7 @@ jobs:
             acr_name: ${{matrix.acr_name}}
             image_name: ${{matrix.image_name}}
             environment: ${{matrix.environment}}
-            tag: ${{github.sha}}
+            tag: ${{github.run_id}}
         secrets: inherit
 
     
