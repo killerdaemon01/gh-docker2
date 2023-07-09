@@ -48,8 +48,9 @@ jobs:
             acr_name: myregistry29017
             image_name: node-image-dev
             web_app_name: mywebapp29017
-            tag: ${{github.sha}}
+            tag: ${{github.run_id}}
             environment: dev
+            app_settings: '[{"name": "DOCKER_REGISTRY_SERVER_PASSWORD","value": "@Microsoft.KeyVault(VaultName=mykeyvault290171;SecretName=acrpassword)","slotSetting": false},{"name": "DOCKER_REGISTRY_SERVER_URL","value": "https://myregistry29017.azurecr.io","slotSetting": false},{"name": "DOCKER_REGISTRY_SERVER_USERNAME","value": "@Microsoft.KeyVault(VaultName=mykeyvault290171;SecretName=acrusername)","slotSetting": false},{"name": "WEBSITES_ENABLE_APP_SERVICE_STORAGE","value": "false","slotSetting": false}]'
         secrets: inherit
     
     Test:
@@ -62,6 +63,7 @@ jobs:
             acr_name: myregistry29018
             image_name: node-image-test
             web_app_name: mywebapp29018
-            tag: ${{github.sha}}
+            tag: ${{github.run_id}}
             environment: test
+            app_settings: '[{"name": "DOCKER_REGISTRY_SERVER_PASSWORD","value": "@Microsoft.KeyVault(VaultName=mykeyvault290181;SecretName=acrpassword)","slotSetting": false},{"name": "DOCKER_REGISTRY_SERVER_URL","value": "https://myregistry29018.azurecr.io","slotSetting": false},{"name": "DOCKER_REGISTRY_SERVER_USERNAME","value": "@Microsoft.KeyVault(VaultName=mykeyvault290181;SecretName=acrusername)","slotSetting": false},{"name": "WEBSITES_ENABLE_APP_SERVICE_STORAGE","value": "false","slotSetting": false}]'
         secrets: inherit
