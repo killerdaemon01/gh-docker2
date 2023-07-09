@@ -1,0 +1,43 @@
+name: Template variable test
+on:
+    workflow_call:
+        inputs:
+            environment:
+                description: Env name
+                type: string
+                required: true
+            cmd:
+                description: command
+                type: string
+                required: true
+            variable:
+                description: Variable
+                type: string
+                required: true
+            tag:
+                description: Tag
+                type: string
+                required: true
+
+
+jobs:
+    Print:
+        environment: ${{inputs.environment}}
+        runs-on: ubuntu-latest
+        steps:
+            - name: Get code
+              uses: actions/checkout@v3
+            - name: Install node
+              uses: actions/setup-node@v2
+              with:
+                node-version: 16
+            - name: Run script
+              run: |
+                npm install
+                ${{inputs.cmd}}
+                # node ./test2.js
+              env:
+                USERNAME: ${{inputs.variable}}
+            - name: Echo tag
+              run: |
+                echo ${{inputs.tag}}

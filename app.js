@@ -18,7 +18,7 @@ app.get("/hobbies", function(req,res){
 });
 
 app.get("/test",function(req,res){
-    response.sendFile(__dirname+"/test.html");
+    res.sendFile(__dirname+"/test.html");
 });
 
 app.listen(80, function()
